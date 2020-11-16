@@ -116,7 +116,9 @@ var WildRydes = window.WildRydes || {};
     });
 
     function handleAbout(event) {
+        alert("handle called");
         var onSuccess = function registerSuccess(result) {
+            alert("handle successful");
             window.location.href = "about.html";
             onSuccess(result);
         };
