@@ -3,15 +3,6 @@
 var WildRydes = window.WildRydes || {};
 
 (function aboutScopeWrapper($) {
-    function handleRequestClick(event) {
-        event.preventDefault();
-        getUnicorn();
-    }
-
-    $(function onDocReady() {
-        $('#clickme').click(handleRequestClick);
-    });
-    
     var authToken;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
@@ -23,7 +14,6 @@ var WildRydes = window.WildRydes || {};
         alert(error);
         window.location.href = '/signin.html';
     });
-
     function getUnicorn(res) {
         $.ajax({
             method: 'GET',
@@ -46,6 +36,16 @@ var WildRydes = window.WildRydes || {};
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
             }
         });
+
+        function handleRequestClick(event) {
+            event.preventDefault();
+            getUnicorn();
+        }
+    
+        $(function onDocReady() {
+            $('#clickme').click(handleRequestClick);
+        });
+        
 
     }
 }(jQuery));
