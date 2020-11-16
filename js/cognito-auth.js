@@ -112,7 +112,20 @@ var WildRydes = window.WildRydes || {};
         $('#signinForm').submit(handleSignin);
         $('#registrationForm').submit(handleRegister);
         $('#verifyForm').submit(handleVerify);
+        $('#aboutForm').submit(handleAbout);
     });
+
+    function handleAbout(event) {
+        var onSuccess = function registerSuccess(result) {
+            window.location.href = "about.html";
+            onSuccess(result);
+        };
+        var onFailure = function registerFailure(err) {
+            alert(err);
+            onFailure(err);
+        };
+        event.preventDefault();
+    }
 
     function handleSignin(event) {
         var email = $('#emailInputSignin').val();
