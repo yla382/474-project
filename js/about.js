@@ -27,8 +27,8 @@ var WildRydes = window.WildRydes || {};
                 }
             }),
             contentType: 'application/json',
-            success: function (res) {
-                alert(res.TestStr.Val);
+            success: function (data) {
+                alert(data.TestStr.Val);
               },
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
@@ -38,8 +38,9 @@ var WildRydes = window.WildRydes || {};
         });
 
         function handleRequestClick(event) {
+            var res;
             event.preventDefault();
-            getUnicorn();
+            getUnicorn(res);
         }
     
         $(function onDocReady() {
