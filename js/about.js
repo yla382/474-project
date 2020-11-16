@@ -14,18 +14,13 @@ var WildRydes = window.WildRydes || {};
         alert(error);
         window.location.href = '/signin.html';
     });
-    function getUnicorn(res) {
+    function getUnicorn() {
         $.ajax({
             method: 'GET',
             url: _config.api.invokeUrl + '/about',
             headers: {
                 Authorization: authToken
             },
-            data: JSON.stringify({
-                TestStr: {
-                    Val: res.val
-                }
-            }),
             contentType: 'application/json',
             success: function (data) {
                 alert(data.TestStr.Val);
@@ -36,17 +31,14 @@ var WildRydes = window.WildRydes || {};
                 alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
             }
         });
-
-        function handleRequestClick(event) {
-            var res;
-            event.preventDefault();
-            getUnicorn(res);
-        }
-    
-        $(function onDocReady() {
-            $('#clickme').click(handleRequestClick);
-        });
-        
-
     }
+    
+    function handleRequestClick(event) {
+        event.preventDefault();
+        getUnicorn();
+    }
+
+    $(function onDocReady() {
+        $('#clickme').click(handleRequestClick);
+    });
 }(jQuery));
