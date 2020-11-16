@@ -113,12 +113,18 @@ var WildRydes = window.WildRydes || {};
         $('#registrationForm').submit(handleRegister);
         $('#verifyForm').submit(handleVerify);
         $('#aboutForm').submit(handleAbout);
+        $('#homeForm').submit(handleHome);
     });
 
     function handleAbout(event) {
         alert("handle called");
         event.preventDefault();
         window.location.href = "about.html";
+    }
+
+    function handleHome(event) {
+        event.preventDefault();
+        window.location.href = "home.html";
     }
 
     function handleSignin(event) {
