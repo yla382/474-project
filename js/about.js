@@ -23,7 +23,7 @@ var WildRydes = window.WildRydes || {};
             },
             contentType: 'application/json',
             success: function (data) {
-                alert(data.TestStr.Val);
+                alert(data);
               },
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
