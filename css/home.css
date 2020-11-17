@@ -9,7 +9,7 @@
     width: 750px;
   }
   
-  .upload-header {
+  .main-header {
     font-size: 32px;
     color: #034977;
     text-align: center;
@@ -17,22 +17,8 @@
     margin-bottom: 40px;
   }
   
-  .upload-body {
+  .main-body {
     text-align: center;
   }
   
-  .file-input-btn {
-    margin-left: 190px;
-    font-size: 18px;
-    margin-bottom: 50px;
-  }
-  
-  .file-input-btn::-webkit-file-upload-button {
-    background-color: white;
-    border: 1px solid #1072b3;
-    color: #1072b3;
-    border-radius: 5px;
-    padding: 10px 0px 10px 0px;
-    width: 150px;
-  }
   
