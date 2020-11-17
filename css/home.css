@@ -21,4 +21,18 @@
     text-align: center;
   }
   
+  .link-container {
+    display: inline-block;
+    margin-right: 40px;
+  }
+
+  .link {
+    color: white;
+    text-decoration: none;
+  }
+
+  .link:active {
+    color: white;
+    text-decoration: none;
+  }
   
