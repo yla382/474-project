@@ -35,6 +35,7 @@ var WildRydes = window.WildRydes || {};
     
     function handleRequestClick(event) {
         event.preventDefault();
+        alert("doing get request...");
         getUnicorn();
     }
 
