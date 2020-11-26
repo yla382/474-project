@@ -1,5 +1,7 @@
 /*global WildRydes _config AmazonCognitoIdentity AWSCognito*/
 
+// Code modified from AWS WildRydes example for 474 Project. Modified by SM
+
 var WildRydes = window.WildRydes || {};
 
 (function scopeWrapper($) {
@@ -112,14 +114,7 @@ var WildRydes = window.WildRydes || {};
         $('#signinForm').submit(handleSignin);
         $('#registrationForm').submit(handleRegister);
         $('#verifyForm').submit(handleVerify);
-        $('#aboutForm').submit(handleAbout);
     });
-
-    function handleAbout(event) {
-        alert("handle called");
-        event.preventDefault();
-        window.location.href = "about.html";
-    }
 
     function handleSignin(event) {
         var email = $('#emailInputSignin').val();

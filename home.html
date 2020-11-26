@@ -1,65 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>474 Project</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.1.1">
+  <title> Learn Portal Home </title>
 
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="css/layout.css">
+  <!-- Code modified from Bootstrap Carousel example for 474 Project. Modified by SM --> 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  </head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <body>
-    <div class="top-bar">
-      <div class="login-container">
-        <div class="username-container">
-          <span id="username">Welcome!</span>
-        </div>
-        <div class="link-container">
-          <a class="link" href="profile.html">Profile</a>
-        </div>
-        <div class="logout-container">
-          <a class="logout-btn" id="signOut" href="/index.html">Sign out</a>
-        </div>
-      </div>
-    </div>
+  <!-- Bootstrap core CSS -->
+  <!--   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <div class="content">
-      <div class="container">
-        <div class="box">
-          <div class="main-header">
-            Main page
-          </div>
-          <div class="main-body">
-            stuff
-          </div>
-        </div>
 
-        <div style="margin-bottom: 50px;">
-          <button class="next-btn" type="button">
-            A button
-          </button>
-        </div>
-      </div>
-    </div>
+  <!-- Custom styles for this template -->
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+  <link href="css/carousel.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
 
-  Testing
 
-  </br>
-  <button id="clickme" class="btn btn-primary">Click me (testing get request)</button>
-  </br>
   
 
-  <script src="js/vendor/jquery-3.1.0.js"></script>
-  <script src="js/vendor/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <header include-nav-html="nav.html">
+    <!--
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">474 Project</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"> Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Browse </a>
+          </li>
+
+        </ul>
+
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="signin.html"> Login </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="register.html"> Register </a>
+          </li>
+        </ul>
+
+      </div>
+    </nav>
+  -->
+</header>
+
+<main role="main">
+
+
+  <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- START THE FEATURETTES -->
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading"> Pick up where you left off! <span class="text-muted">Ease your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          <ol id="updates">
+            <li> Welcome! This is first item </li>
+          </ol>
+        </div>
+        <div class="col-md-5">
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        </div>
+        <div id="authTokenModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="authToken">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Your Auth Token</h4>
+              </div>
+              <div class="modal-body">
+                <textarea class="authToken"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" id="request" type="submit" value="Test"> Test </button>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+      <div class="row">
+
+        <div id="card-header"><h1> Recently Updated Articles </h1></div>
+
+
+
+        <div class="card-deck">
+
+          <div class="card">
+            <a href="#"><img src="images/shadowfox.png" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <a href="#"><img src="images/shadowfox.png" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <a href="#"><img src="images/shadowfox.png" class="card-img-top" alt="..." ></a>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <a href="#"><img src="images/shadowfox.png" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+          <div class="card">
+            <a href="#"><img src="images/shadowfox.png" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div><!-- /.row -->
+
+      <hr class="featurette-divider">
+
+
+      <hr class="featurette-divider">
+
+    </div><!-- /.container -->
+
+
+    <!-- FOOTER -->
+    <footer class="container">
+      <p class="float-right"><a href="#">Back to top</a></p>
+      <p>&copy; 2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+
   <script src="js/vendor/aws-cognito-sdk.min.js"></script>
   <script src="js/vendor/amazon-cognito-identity.min.js"></script>
-  <script src="https://js.arcgis.com/4.3/"></script>
   <script src="js/config.js"></script>
   <script src="js/cognito-auth.js"></script>
-  <script src="js/about.js"></script>
 
- </body>
+
+  <script src="js/nav.js"></script>
+  <script>includeHTML();</script>  
+  <script src="js/home.js"></script>
+
+</body>
 </html>

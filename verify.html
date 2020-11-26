@@ -1,86 +1,58 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title> Verify </title>
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- Code modified from Bootstrap Carousel example for 474 Project. Modified by SM --> 
 
-        <!--  <link rel="stylesheet" href="css/font.css">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="/css/message.css"> -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/index.css">
-        <link rel="stylesheet" href="css/layout.css">
-
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
-        <div class="container">
-            <div class="left-container">
-                <div class="left-inner-container">
-                    <span class="dot1"></span>
-                    <span class="dot2"></span>
-                    <span class="dot3"></span>
-                    <span class="dot4"></span>
-                    <span class="dot5"></span>
-                    <span class="dot6"></span>
-                </div>
-            </div>
-
-            <div class="right-container">
-                <div class="right-inner-container">
-
-                    <div id="noCognitoMessage" class="configMessage" style="display: none;">
-                        <div class="backdrop"></div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">No Cognito User Pool Configured</h3>
-                            </div>
-                            <div class="panel-body">
-                                <p>There is no user registered under the provided email.</p>
-                            </div>
-                        </div>
-                    </div>
+</head>
 
 
-                    <section class="form-wrap">
-                        <div class="login-header">
-                            Verify Email
-                        </div>
-                        <form id="verifyForm" class="login-body">
-                          <input class="login-field" type="email" id="emailInputVerify" placeholder="Email" required>
-                          <input class="login-field" type="text" id="codeInputVerify" placeholder="Verification Code" pattern=".*" required>
+<body class="text-center">
 
-                          <input class="login-btn" type="submit" value="Verify">
+    <form class="form-signin" id="verifyForm">
 
-                        </form>
-                    </section>
+        <img class="mb-4" src="images/bucephalus.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Verify Email</h1>
 
-                    <a href="/index.html"><button type="button" class="login-btn">Back to Sign Up</button></a>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="emailInputVerify" class="form-control" placeholder="Email address" required autofocus>
 
-                </div>
-            </div>        
+        <label for="inputCode" class="sr-only">Verification Code</label>
+        <input type="text" id="codeInputVerify" class="form-control" placeholder="Verification Code" pattern=".*" required>
+
+        <div class="checkbox mb-3">
 
         </div>
 
-        
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Verify">Verify</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
 
-        <script src="js/vendor/jquery-3.1.0.js"></script>
-        <script src="js/vendor/bootstrap.min.js"></script>
-        <script src="js/vendor/aws-cognito-sdk.min.js"></script>
-        <script src="js/vendor/amazon-cognito-identity.min.js"></script>
-        <script src="js/config.js"></script>
-        <script src="js/cognito-auth.js"></script>
-    </body>
+    </form>
+
+
+
+    <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+    <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cognito-auth.js"></script>
+
+
+</body>
 </html>
