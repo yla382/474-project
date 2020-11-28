@@ -1,6 +1,6 @@
 {
     "path": "/home",
-    "httpMethod": "POST",
+    "httpMethod": "GET",
     "headers": {
         "Accept": "*/*",
         "Authorization": "eyJraWQiOiJLTzRVMWZs",

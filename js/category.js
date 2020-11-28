@@ -18,44 +18,21 @@ var WildRydes = window.WildRydes || {};
         window.location.href = './signin.html';
     });
 
-    function requestArticle(dummyText) {
-        $.ajax({
-            method: 'POST',
-            url: _config.api.invokeUrl + '/article',
-            headers: {
-                Authorization: authToken
-            },
-            data: JSON.stringify({
-                Article: {
-                    Heading: 'This is a heading',
-                    Topic: 'This is topic',
-                    Content: dummyText
-                }
-            }),
-            contentType: 'application/json',
-            success: completeRequest,
-            error: function ajaxError(jqXHR, textStatus, errorThrown) {
-                console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
-                console.error('Response: ', jqXHR.responseText);
-                alert('An error occured when requesting your unicorn:\n' + jqXHR.responseText);
-            }
-        });
-    }
-
-/*    function requestCategory() {
+    function requestCategory() {
         $.ajax({
             method: 'GET',
-            url: _config.api.invokeUrl + '/article',
+            url: _config.api.invokeUrl + '/category',
             headers: {
                 Authorization: authToken
             },
-            data: JSON.stringify({
+/*            data: JSON.stringify({
                 Category: {
                     Id: '0',
                     Title: 'This is a title'
                 }
-            }),
-            contentType: 'application/json',
+            }),*/
+            //dataType: 'json',
+            contentType: 'json',
             success: completeRequest,
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting category: ', textStatus, ', Details: ', errorThrown);
@@ -63,15 +40,16 @@ var WildRydes = window.WildRydes || {};
                 alert('An error occured when requesting your category:\n' + jqXHR.responseText);
             }
         });
-    }*/
+    }
 
     function completeRequest(result) {
-        var unicorn;
-        var pronoun;
+/*        var unicorn;
+        var pronoun;*/
         console.log('Response received from API: ', result);
-        unicorn = result.Unicorn;
+/*        unicorn = result.Unicorn;
         pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
-        displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');
+        displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');*/
+        displayUpdate(result);
 /*        animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!');
             WildRydes.map.unsetLocation();
@@ -82,15 +60,13 @@ var WildRydes = window.WildRydes || {};
 
     // Register click handler for #request button
     $(function onDocReady() {
-        $('#request').click(handleRequestClick);
-        //$('#request2').click(handleRequest2Click);
+        $('#request2').click(handleRequestClick);
 
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
                 $('.authToken').text(token);
-                handleLogin();
             }
         });
 /*
@@ -106,15 +82,6 @@ var WildRydes = window.WildRydes || {};
     }*/
 
     function handleRequestClick(event) {
-
-        var dummyText = 'Dummy Test';
-        event.preventDefault();
-        requestArticle(dummyText);
-        alert("Home js click");
-
-    }
-
-    function handleRequest2Click(event) {
 
         //var dummyText = 'Dummy Test';
         event.preventDefault();
