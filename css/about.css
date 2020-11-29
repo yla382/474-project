@@ -12,7 +12,6 @@
     white-space: nowrap;
 }
 
-.about-header {
-    margin-left: auto;
-    margin-right: auto;
+.about-heading {
+    text-decoration: underline;
 }
