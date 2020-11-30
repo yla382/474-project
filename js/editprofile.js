@@ -39,7 +39,7 @@ var WildRydes = window.WildRydes || {};
     }
 
     function completeRequest(result) {
-    	alert("Success");
+    	alert(result);
     }
 
     function handleRquestClick(event) {
