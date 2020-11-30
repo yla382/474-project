@@ -42,29 +42,26 @@ var WildRydes = window.WildRydes || {};
     	alert(result);
     }
 
-    function handleRquestClick(event) {
-    	 event.preventDefault();
-    	 let get_name = $('#form_name').val();
-    	 let get_email = $('#form_email').val();
-    	 let get_exp = $('form_exp').val();
-    	 let get_desc = $('#form_desc').val();
-    	 editprofile(get_name, get_email, get_exp, get_desc);
 
-    }
-
-     $(function onDocReady() {
+    $(function onDocReady() {
         $('#edit_button').click(handleRequestClick);
 
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
+                //displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
                 $('.authToken').text(token);
             }
         });
-/*
-        if (!_config.api.invokeUrl) {
-            $('#noApiMessage').show();
-        }*/
     });
+
+    function handleRequestClick(event) {
+    	 event.preventDefault();
+    	 let get_name = $('#form_name').val();
+    	 let get_email = $('#form_email').val();
+    	 let get_exp = $('form_exp').val();
+    	 let get_desc = $('#form_desc').val();
+    	 editProfile(get_name, get_email, get_exp, get_desc);
+
+    }
 }(jQuery));
