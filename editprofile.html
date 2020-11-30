@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  	<!-- jQuery library -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<!-- Popper JS -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<!-- Latest compiled JavaScript -->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  	<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+  	<link href="css/carousel.css" rel="stylesheet">
+  	<link href="css/main.css" rel="stylesheet">
+  	<!-- <link href="css/editprofile.css" rel="stylesheet"> -->
+  	<title> Edit Profile </title>
+</head>
+
+<body>
+	<header include-nav-html="nav.html"></header>
+	<main>
+		<form class="text-center border border-light p-5" action="#!">
+
+    <p class="h4 mb-4">Edit Profile</p>
+
+    <input type="text" id="form_name" class="form-control mb-4" placeholder="Name">
+
+    <input type="email" id="form_email" class="form-control mb-4" placeholder="E-mail">
+   
+    <label>Subject</label>
+    <input type="text" id="form_exp" class="form-control mb-4" placeholder="Experience">
+
+    
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="form_desc" rows="3" placeholder="Description"></textarea>
+    </div>
+
+    <!-- Send button -->
+    <button class="btn btn-info btn-block" type="submit" id=edit_button>Edit</button>
+
+</form>
+
+	</main>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+ <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+ <script src="js/config.js"></script>
+ <script src="js/cognito-auth.js"></script>
+ <script src="js/editprofile.js"></script>
+
+<!--  <script src="js/nav.js"></script>
+ <script>includeHTML();</script>  
+ <script src="js/home.js"></script>
+ <script src="js/category.js"></script> -->
+</html>
