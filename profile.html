@@ -1,69 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Jekyll v4.1.1">
-  <title> Learn Portal </title>
-
-  <!-- Code modified from Bootstrap Carousel example for 474 Project. Modified by SM --> 
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- Popper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- Bootstrap core CSS -->
-  <!--   <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-
-
-  <!-- Custom styles for this template -->
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-  <link href="css/carousel.css" rel="stylesheet">
-  <link href="css/main.css" rel="stylesheet">
-  <link href="css/about.css" rel="stylesheet">
-
-
-  
-
+	<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  	<!-- jQuery library -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<!-- Popper JS -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<!-- Latest compiled JavaScript -->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  	<link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+  	<link href="css/carousel.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/profile.css" rel="stylesheet">
+  	<!-- <link href="css/editprofile.css" rel="stylesheet"> -->
+  	<title> Edit Profile </title>
 </head>
 
 <body>
-<header include-nav-html="./nav.html">
-</header>
+	<header include-nav-html="nav.html"></header>
+	<main>
+		<form class="text-center border border-light p-5" action="#!">
 
-<main role="main">
-    <div class="container marketing">
+    <p class="h4 mb-4">Edit Profile</p>
 
-      <!-- START THE FEATURETTES -->
+    <input type="text" id="form_name" class="form-control mb-4" placeholder="Name">
 
+    <input type="email" id="form_email" class="form-control mb-4" placeholder="E-mail">
+   
+    <label>Subject</label>
+    <input type="text" id="form_exp" class="form-control mb-4" placeholder="Experience">
 
-      <!-- /END THE FEATURETTES -->
+    
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="form_desc" rows="3" placeholder="Description"></textarea>
+    </div>
 
-      <hr class="featurette-divider">
+    <!-- Send button -->
+    <button class="btn btn-info btn-block" type="submit" id=edit_button>Edit</button>
 
-    </div><!-- /.container -->
+</form>
 
-
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-right"><a href="#">Back to top</a></p>
-      <p>&copy; 2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
-  </main>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
-
-  <script src="js/nav.js"></script>
-  <script>includeHTML();</script>  
-
+	</main>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+ <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+ <script src="js/config.js"></script>
+ <script src="js/cognito-auth.js"></script>
+ <script src="js/editprofile.js"></script>
+
+<!--  <script src="js/nav.js"></script>
+ <script>includeHTML();</script>  
+ <script src="js/home.js"></script>
+ <script src="js/category.js"></script> -->
 </html>
