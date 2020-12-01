@@ -38,3 +38,8 @@
     left: 0;
     margin-bottom: 50px;
 }
+
+.back-btn {
+    margin-left: auto;
+    margin-right: auto;
+}
