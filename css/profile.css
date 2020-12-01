@@ -6,6 +6,8 @@
     border-radius: 10px;
     background-color: white;
     padding: 30px;
+    min-width: 800px;
+    margin-bottom: 100px;
 }
 
 html {
@@ -20,4 +22,8 @@ body {
 
 .profile-input-header {
     margin-top: 7px;
+}
+
+.profile-contact-info {
+    font-size: 0.8px;
 }
