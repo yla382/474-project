@@ -5,15 +5,19 @@
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 10px;
     background-color: white;
-    padding: 30px;
     min-width: 800px;
 }
 
 .article-header {
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding-bottom: 20px;
+    width: 100%;
 }
 
 .article-desc {
-    
+    width: 100%;
+}
+
+.article-outer-container {
+    background-color: #f9f9f9;
 }
