@@ -61,11 +61,10 @@ var WildRydes = window.WildRydes || {};
     	 event.preventDefault();
     	 let get_name     = $('#form_name').val();
     	 let get_email    = $('#form_email').val();
-    	 let get_exp      = $('form_exp').val();
+    	 let get_exp      = $('#form_exp').val();
     	 let get_desc     = $('#form_desc').val();
          let get_phonenum = $('#form_phonenum').val();
          let get_discord  = $('#form_discord').val();
     	 editProfile(get_name, get_email, get_exp, get_desc, get_phonenum, get_discord);
-
     }
 }(jQuery));

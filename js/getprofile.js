@@ -31,7 +31,14 @@ var WildRydes = window.WildRydes || {};
     }
 
     function completeRequest(result) {
-    	alert(result.body);
+    	let profile = result.Profile.Item.profile;
+    	$('#form_name').val(profile.Name);
+    	$('#form_email').val(profile.Email);
+    	$('#form_exp').val(profile.Experience);
+    	$('#form_desc').val(profile.Description);
+    	$('#form_phonenum').val(profile.Phonenumber);
+    	$('#form_discord').val(profile.Discord);
+
     }
 
     $(function onDocReady() {
