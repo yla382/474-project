@@ -31,7 +31,7 @@ var WildRydes = window.WildRydes || {};
     }
 
     function completeRequest(result) {
-    	alert(result.profile);
+    	alert(result.body);
     }
 
     $(function onDocReady() {
