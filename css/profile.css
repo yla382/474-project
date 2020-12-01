@@ -5,6 +5,7 @@
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 10px;
     background-color: white;
+    padding: 30px;
 }
 
 html {
@@ -15,4 +16,8 @@ html {
 body {
     height: 100%;
     background-color: #eee;
+}
+
+.profile-input-header {
+    margin-top: 7px;
 }
