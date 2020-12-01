@@ -22,3 +22,11 @@
 .article-outer-container {
     background-color: #f9f9f9;
 }
+
+.article-title {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 100%;
+    background-color: #ddd;
+    font-size: 20px;
+}
