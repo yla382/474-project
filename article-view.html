@@ -16,7 +16,7 @@
     <link href="css/profile.css" rel="stylesheet">
     <link href="css/article-view.css" rel="stylesheet">
   	<!-- <link href="css/editprofile.css" rel="stylesheet"> -->
-  	<title> Edit Profile </title>
+  	<title> Article Page </title>
 </head>
 
 <body>
@@ -24,82 +24,84 @@
   </header>
 	<main>
 
+    <div class="row col-md-7">
+        <div class="row col-md-10 article-container">
+            <p class="h4 mb-4 article-header">Pre-calc/Calc tutoring</p>
+            <p class="article-desc">
+                placeholder desc
+            </p>
+        </div>
 
-    <div class="row col-md-7 article-container">
-        Heading
-        content
-        profile Info
+        <div class="row col-md-10 profile-container">
+            <div class="col-md-4">
+                <div style="    
+                background-color: #eee;
+                margin-right: auto;
+                margin-left: auto;
+                padding: 20px;
+                height: 220px;
+                width: 220px;
+                border-radius: 200px;">
+                </div>
+                <div class="profile-contact-info">
+                    <div class="card">
+                        <div class="card-header font-weight-bold">
+                            Contact Info
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">###-###-####</li>
+                            <li class="list-group-item">discord link</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <p class="h4 mb-4 profile-header">Tutor's Profile</p>
+                <form action="#!">
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold profile-input-header">
+                            Name
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" id="form_name" class="form-control mb-4" placeholder="Name" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold profile-input-header">
+                            Email
+                        </div>
+                        <div class="col-md-8">
+                            <input type="email" id="form_email" class="form-control mb-4" placeholder="E-mail" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold profile-input-header">
+                            Experiences
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <textarea class="form-control rounded-0" id="form_exp" rows="3" placeholder="Experiences" readonly></textarea>
+                            </div>					</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 font-weight-bold profile-input-header">
+                            Description
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <textarea class="form-control rounded-0" id="form_desc" rows="3" placeholder="Description" readonly></textarea>
+                            </div>					</div>
+                    </div>
+
+                    <!-- Send button -->
+                    <a class="btn btn-info float-right" href="./profile-edit.html">Edit</a>
+                </form>
+            </div>
+        </div>
     </div>
-
-	<div class="row col-md-7 profile-container">
-		<div class="col-md-4">
-			<div style="    
-			background-color: #eee;
-			margin-right: auto;
-			margin-left: auto;
-			padding: 20px;
-			height: 220px;
-			width: 220px;
-			border-radius: 200px;">
-			</div>
-			<div class="profile-contact-info">
-				<div class="card">
-					<div class="card-header font-weight-bold">
-						Contact Info
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">###-###-####</li>
-						<li class="list-group-item">discord link</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<p class="h4 mb-4 profile-header">Edit Profile</p>
-			<form action="#!">
-				<div class="row">
-					<div class="col-md-4 font-weight-bold profile-input-header">
-						Name
-					</div>
-					<div class="col-md-8">
-						<input type="text" id="form_name" class="form-control mb-4" placeholder="Name" readonly>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 font-weight-bold profile-input-header">
-						Email
-					</div>
-					<div class="col-md-8">
-						<input type="email" id="form_email" class="form-control mb-4" placeholder="E-mail" readonly>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 font-weight-bold profile-input-header">
-						Experiences
-					</div>
-					<div class="col-md-8">
-						<div class="form-group">
-							<textarea class="form-control rounded-0" id="form_exp" rows="3" placeholder="Experiences" readonly></textarea>
-						</div>					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 font-weight-bold profile-input-header">
-						Description
-					</div>
-					<div class="col-md-8">
-						<div class="form-group">
-							<textarea class="form-control rounded-0" id="form_desc" rows="3" placeholder="Description" readonly></textarea>
-						</div>					</div>
-				</div>
-
-				<!-- Send button -->
-				<a class="btn btn-info float-right" href="./profile-edit.html">Edit</a>
-			</form>
-		</div>
-	</div>
 
 
 	<!-- FOOTER -->
