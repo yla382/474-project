@@ -14,6 +14,7 @@
   	<link href="css/carousel.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/profile.css" rel="stylesheet">
+    <link href="css/article-view.css" rel="stylesheet">
   	<!-- <link href="css/editprofile.css" rel="stylesheet"> -->
   	<title> Edit Profile </title>
 </head>
@@ -23,7 +24,14 @@
   </header>
 	<main>
 
-	<div class="row col-md-5 profile-container">
+
+    <div class="row col-md-7 article-container">
+        Heading
+        content
+        profile Info
+    </div>
+
+	<div class="row col-md-7 profile-container">
 		<div class="col-md-4">
 			<div style="    
 			background-color: #eee;
@@ -54,7 +62,7 @@
 						Name
 					</div>
 					<div class="col-md-8">
-						<input type="text" id="form_name" class="form-control mb-4" placeholder="Name" >
+						<input type="text" id="form_name" class="form-control mb-4" placeholder="Name" readonly>
 					</div>
 				</div>
 
@@ -73,7 +81,7 @@
 					</div>
 					<div class="col-md-8">
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="form_exp" rows="3" placeholder="Experiences"></textarea>
+							<textarea class="form-control rounded-0" id="form_exp" rows="3" placeholder="Experiences" readonly></textarea>
 						</div>					</div>
 				</div>
 
@@ -83,15 +91,12 @@
 					</div>
 					<div class="col-md-8">
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="form_desc" rows="3" placeholder="Description"></textarea>
+							<textarea class="form-control rounded-0" id="form_desc" rows="3" placeholder="Description" readonly></textarea>
 						</div>					</div>
 				</div>
 
-                <!-- Send button -->
-                <div class="row float-right">
-                    <a class="profile-edit-cancel btn btn-outline-info my-2 my-sm-0 float-right" href="./profile.html">Cancel</a>
-                    <button class="profile-edit-save btn btn-info float-right" type="submit" id=edit_button>Save Changes</button>
-                </div>
+				<!-- Send button -->
+				<a class="btn btn-info float-right" href="./profile-edit.html">Edit</a>
 			</form>
 		</div>
 	</div>

@@ -33,3 +33,11 @@ body {
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding-bottom: 20px;
 }
+
+.profile-edit-save {
+    margin-right: 15px;
+}
+
+.profile-edit-cancel {
+    margin-right: 20px;
+}
