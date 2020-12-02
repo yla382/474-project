@@ -5,7 +5,7 @@
 var WildRydes = window.WildRydes || {};
 
 
-(function rideScopeWrapper($) {
+(function scopeWrapper($) {
     var authToken;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
@@ -18,21 +18,20 @@ var WildRydes = window.WildRydes || {};
         window.location.href = './signin.html';
     });
 
-    function requestArticle(dummyText) {
+    function requestArticle() {
         $.ajax({
             method: 'POST',
             url: _config.api.invokeUrl + '/article',
             headers: {
                 Authorization: authToken
             },
-            data: JSON.stringify({
-                Article: {
-                    Heading: 'This is a heading',
-                    Topic: 'This is topic',
-                    Content: dummyText
+/*            data: JSON.stringify({
+                Category: {
+                    Id: '0',
+                    Title: 'Category Title'
                 }
-            }),
-            contentType: 'application/json',
+            }),*/
+            contentType: 'json',
             success: completeRequest,
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
                 console.error('Error requesting ride: ', textStatus, ', Details: ', errorThrown);
@@ -42,53 +41,20 @@ var WildRydes = window.WildRydes || {};
         });
     }
 
-/*    function requestCategory() {
-        $.ajax({
-            method: 'GET',
-            url: _config.api.invokeUrl + '/article',
-            headers: {
-                Authorization: authToken
-            },
-            data: JSON.stringify({
-                Category: {
-                    Id: '0',
-                    Title: 'This is a title'
-                }
-            }),
-            contentType: 'application/json',
-            success: completeRequest,
-            error: function ajaxError(jqXHR, textStatus, errorThrown) {
-                console.error('Error requesting category: ', textStatus, ', Details: ', errorThrown);
-                console.error('Response: ', jqXHR.responseText);
-                alert('An error occured when requesting your category:\n' + jqXHR.responseText);
-            }
-        });
-    }*/
-
     function completeRequest(result) {
-        var unicorn;
-        var pronoun;
+        
         console.log('Response received from API: ', result);
-        unicorn = result.Unicorn;
-        pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
-        displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');
-/*        animateArrival(function animateCallback() {
-            displayUpdate(unicorn.Name + ' has arrived. Giddy up!');
-            WildRydes.map.unsetLocation();
-            $('#request').prop('disabled', 'disabled');
-            $('#request').text('Set Pickup');
-        });*/
+
     }
 
     // Register click handler for #request button
     $(function onDocReady() {
-        $('#request').click(handleRequestClick);
+        //$('#request').click(handleRequestClick);
         //$('#request2').click(handleRequest2Click);
 
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
                 $('.authToken').text(token);
                 handleLogin();
             }
@@ -99,41 +65,28 @@ var WildRydes = window.WildRydes || {};
         }*/
     });
 
-/*    function handlePickupChanged() {
-        var requestButton = $('#request');
-        requestButton.text('Request Unicorn');
-        requestButton.prop('disabled', false);
-    }*/
 
     function handleRequestClick(event) {
 
-        var dummyText = 'Dummy Test';
         event.preventDefault();
-        requestArticle(dummyText);
+        requestArticle();
         alert("Home js click");
 
     }
 
     function handleRequest2Click(event) {
 
-        //var dummyText = 'Dummy Test';
         event.preventDefault();
         requestCategory();
         alert("Category js click");
 
     }
 
-
-    function displayUpdate(text) {
-        $('#updates').append($('<li>' + text + '</li>'));
-    }
-
     function handleLogin() {
-/*        $('#signIn').hide();
-        $('#signOut').show();*/
-        //alert("User Logged In " + $("#signin").text());
-        $('#signOut').append($('<a class="nav-link" href="./signout.html"> Sign Out </a>'));
-        $('#signIn').remove();
+
+        $('#nav-signIn').hide();
+        $('#nav-register').hide();
+        $('#nav-signOut').show();
     }
 
 

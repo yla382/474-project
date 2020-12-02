@@ -1,7 +1,7 @@
 var WildRydes = window.WildRydes || {};
 
 (function editprofScopeWrapper($) {
-	var authToken;
+var authToken;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
             authToken = token;
@@ -13,7 +13,7 @@ var WildRydes = window.WildRydes || {};
         window.location.href = './signin.html';
     });
 
-    function editProfile(name, email, experience, description, phonenumber, discord) {
+    function editProfile(profilePic, name, email, experience, description, phonenumber, discord) {
         $.ajax({
             method: 'POST',
             url: _config.api.invokeUrl + '/editprofile',
@@ -21,12 +21,13 @@ var WildRydes = window.WildRydes || {};
                 Authorization: authToken
             },
             data: JSON.stringify({
-                Profile: {
+                Details: {
+                    ProfilePic : profilePic, 
                     Name       : name,
                     Email      : email,
                     Experience : experience,
                     Description: description,
-                    Phonenumber: phonenumber,
+                    PhoneNumber: phonenumber,
                     Discord    : discord
                 }
             }),
@@ -41,13 +42,17 @@ var WildRydes = window.WildRydes || {};
     }
 
     function completeRequest(result) {
-    	alert(result);
+    alert("Profile successfully updated");
+        window.location.href = "./profile.html";
     }
 
 
     $(function onDocReady() {
         $('#edit_button').click(handleRequestClick);
 
+        $('#form_pic').change(function(e){
+            console.log(e.target.files[0]);
+        });
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
@@ -58,13 +63,15 @@ var WildRydes = window.WildRydes || {};
     });
 
     function handleRequestClick(event) {
-    	 event.preventDefault();
-    	 let get_name     = $('#form_name').val();
-    	 let get_email    = $('#form_email').val();
-    	 let get_exp      = $('#form_exp').val();
-    	 let get_desc     = $('#form_desc').val();
+    event.preventDefault();
+         //let get_pic      = $('#form_pic').target.files[0];
+         let get_pic      = "PlaceHolder"
+         let get_name     = $('#form_name').val();
+    let get_email    = $('#form_email').val();
+    let get_exp      = $('#form_exp').val();
+    let get_desc     = $('#form_desc').val();
          let get_phonenum = $('#form_phonenum').val();
          let get_discord  = $('#form_discord').val();
-    	 editProfile(get_name, get_email, get_exp, get_desc, get_phonenum, get_discord);
+    editProfile(get_pic, get_name, get_email, get_exp, get_desc, get_phonenum, get_discord);
     }
 }(jQuery));

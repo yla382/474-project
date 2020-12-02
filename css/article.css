@@ -1,0 +1,42 @@
+.article-container {
+    margin-top: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 10px;
+    background-color: white;
+    padding: 30px;
+    min-width: 800px;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.article-input-header {
+    margin-top: 7px;
+}
+
+.article-contact-info {
+    font-size: 14px;
+    margin-top: 25px;
+}
+
+.article-header {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding-bottom: 20px;
+}
+
+#articleCancle {
+
+    margin-top: 10px;
+}
+
+#articleCancle a:link, a:visited {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+/* #articleCancle a:hover, a:active {
+  } */

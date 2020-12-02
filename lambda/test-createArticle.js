@@ -15,5 +15,5 @@
       }
     }
   },
-  "body": "{\"Category\":{\"Id\": 5,\"Title\":\"Test Title\"}}"
+  "body": "{\"Article\":{\"Content\": \"Test Content\",\"Title\":\"Test Title\"}}"
 }

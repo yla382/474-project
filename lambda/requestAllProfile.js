@@ -10,14 +10,14 @@ const AWS = require('aws-sdk');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
-const categoryParam = {
-    TableName: 'Category',
-    ProjectionExpression: "CategoryId, Title",
+const profileParam = {
+    TableName: 'Profile',
+    ProjectionExpression: "ProfileKey, Details",
     ReturnConsumedCapacity: "TOTAL"
 };
 
-var categories = [];
-var categoryCount; 
+var profiles = [];
+var profileCount; 
 
 exports.handler = (event, context, callback) => {
 
@@ -44,7 +44,7 @@ exports.handler = (event, context, callback) => {
     //var category = requestBody.Category;
     //const unicorn = findUnicorn(article);
 
-    getCategory().then(() => {
+    getProfile().then(() => {
         // You can use the callback function to provide a return value from your Node.js
         // Lambda functions. The first parameter is used for failed invocations. The
         // second parameter specifies the result data of the invocation.
@@ -57,8 +57,8 @@ exports.handler = (event, context, callback) => {
         callback(null, {
             statusCode: 201,
             body: JSON.stringify({
-                categoryCount,
-                categories
+                profileCount,
+                profiles
 
             }),
             headers: {
@@ -86,50 +86,20 @@ exports.handler = (event, context, callback) => {
     return fleet[Math.floor(Math.random() * fleet.length)];
 }*/
 
-function getCategory() {
-    return ddb.scan(categoryParam, function(err, data){
+function getProfile() {
+    return ddb.scan(profileParam, function(err, data){
         if (err){
             console.log("Error", err);
         }
         else{
             console.log("Success", data);
-            categoryCount = data.Count;
-            categories = data.Items;
-            console.log("Test", categories);
+            profileCount = data.Count;
+            profiles = data.Items;
+            console.log("Test", profiles);
 
         }
     }).promise();
 }
-
-/*function getAllCategories(category) {
-    return ddb.scan(paramsCategory, function(err, data){
-        if (err){
-            console.log("Error", err);
-        }
-        else{
-            console.log("Success", data.Items);
-            category.Id = data.Items.CategoryId;
-            category.Title = data.Items.Title;
-            categories = data.Items;
-        }
-    }).promise();
-}*/
-
-/*function recordArticle(categoryId, username, unicorn, article) {
-    return ddb.put({
-        TableName: 'Articles',
-        Item: {
-            ArticleId: categoryId,
-            User: username,
-            Unicorn: unicorn,
-            UnicornName: unicorn.Name,
-            Heading: article.Heading,
-            Topic: article.Topic,
-            Content: article.Content,
-            RequestTime: new Date().toISOString(),
-        },
-    }).promise();
-}*/
 
 
 function toUrlString(buffer) {

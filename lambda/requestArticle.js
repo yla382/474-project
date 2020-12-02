@@ -10,23 +10,14 @@ const AWS = require('aws-sdk');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
-const fleet = [
-    {
-        Name: 'Bucephalus',
-        Color: 'Golden',
-        Gender: 'Male',
-    },
-    {
-        Name: 'Shadowfax',
-        Color: 'White',
-        Gender: 'Male',
-    },
-    {
-        Name: 'Rocinante',
-        Color: 'Yellow',
-        Gender: 'Female',
-    },
-];
+const articleParam = {
+    TableName: 'Articles',
+    ProjectionExpression: "Category, Title, Content, UserProfile",
+    ReturnConsumedCapacity: "TOTAL"
+};
+
+var articles = [];
+var articleCount; 
 
 exports.handler = (event, context, callback) => {
     if (!event.requestContext.authorizer) {
@@ -34,8 +25,8 @@ exports.handler = (event, context, callback) => {
       return;
     }
 
-    const articleId = toUrlString(randomBytes(16));
-    console.log('Received event (', articleId, '): ', event);
+    const requestId = toUrlString(randomBytes(16));
+    console.log('Received event (', requestId, '): ', event);
 
     // Because we're using a Cognito User Pools authorizer, all of the claims
     // included in the authentication token are provided in the request context.
@@ -46,13 +37,13 @@ exports.handler = (event, context, callback) => {
     // In order to extract meaningful values, we need to first parse this string
     // into an object. A more robust implementation might inspect the Content-Type
     // header first and use a different parsing strategy based on that value.
-    const requestBody = JSON.parse(event.body);
+    //const requestBody = JSON.parse(event.body);
 
-    const article = requestBody.Article;
+    //const article = requestBody.Article;
 
-    const unicorn = findUnicorn(article);
+    //const unicorn = findUnicorn(article);
 
-    recordArticle(articleId, username, unicorn, article).then(() => {
+    getArticle().then(() => {
         // You can use the callback function to provide a return value from your Node.js
         // Lambda functions. The first parameter is used for failed invocations. The
         // second parameter specifies the result data of the invocation.
@@ -62,11 +53,8 @@ exports.handler = (event, context, callback) => {
         callback(null, {
             statusCode: 201,
             body: JSON.stringify({
-                ArticleId: articleId,
-                Unicorn: unicorn,
-                UnicornName: unicorn.Name,
-                Eta: '30 seconds',
-                Rider: username,
+                articleCount,
+                articles
             }),
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -86,24 +74,23 @@ exports.handler = (event, context, callback) => {
 // This is where you would implement logic to find the optimal unicorn for
 // this ride (possibly invoking another Lambda function as a microservice.)
 // For simplicity, we'll just pick a unicorn at random.
-function findUnicorn(article) {
-    console.log('Finding unicorn for ', article.Heading, ', ', article.Topic);
-    return fleet[Math.floor(Math.random() * fleet.length)];
-}
+// function findUnicorn(article) {
+//     console.log('Finding unicorn for ', article.Heading, ', ', article.Topic);
+//     return fleet[Math.floor(Math.random() * fleet.length)];
+// }
 
-function recordArticle(articleId, username, unicorn, article) {
-    return ddb.put({
-        TableName: 'Articles',
-        Item: {
-            ArticleId: articleId,
-            User: username,
-            Unicorn: unicorn,
-            UnicornName: unicorn.Name,
-            Heading: article.Heading,
-            Topic: article.Topic,
-            Content: article.Content,
-            RequestTime: new Date().toISOString(),
-        },
+function getArticle() {
+    return ddb.scan(articleParam, function(err, data){
+        if (err){
+            console.log("Error", err);
+        }
+        else{
+            console.log("Success", data);
+            articleCount = data.Count;
+            articles = data.Items;
+            console.log("Test", articles);
+
+        }
     }).promise();
 }
 

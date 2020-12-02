@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v4.1.1">
+  <title> Create Article </title>
+
+  <!-- Code modified from Bootstrap Carousel example for 474 Project. Modified by SM --> 
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom styles for this template -->
+  <link href="css/signin.css" rel="stylesheet">
+  <link href="css/article.css" rel="stylesheet">
+
+  <style>
+
+        input[type=text], textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        }
+        
+        input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        input[name=content] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+            height: 300px;
+        }
+        
+        button {
+        background-color: red;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+        background-color: #45a049;
+        }
+        
+        .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body class="text-center">
+
+    <div class="row col-md-5 article-container">
+		
+    <div class="col-md-8">
+        <p class="h4 mb-4 article-header"> Create Article </p>
+        <form action="#!">
+            <div class="row">
+                <div class="col-md-4 font-weight-bold article-input-header">
+                    Title
+                </div>
+                <div class="col-md-8">
+                    <input class="login-field" type="text" id="articleTitle" placeholder="Write title..." pattern=".*">
+                </div>
+            </div>
+
+            <!--
+            <div class="row">
+                <div class="col-md-4 font-weight-bold profile-input-header">
+                    Category
+                </div>
+                <div class="col-md-8">
+                    <input class="login-field" type="text" id="roleUpdate" placeholder="e.g tekken, cooking etc..." pattern=".*">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 font-weight-bold profile-input-header">
+                    Tag
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input class="login-field" type="text" id="tagUpdate" placeholder="e.g. gaming, writing etc..." pattern=".*">
+                    </div>					</div>
+            </div> 
+            -->
+
+            <div class="row">
+                <div class="col-md-4 font-weight-bold article-input-header">
+                    Content
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0" id="form_desc" rows="10" placeholder="Write your content here..."></textarea>
+                    </div>					
+                </div>
+            </div>
+
+            
+            <!-- Send button -->
+            <input class="btn btn-lg btn-info btn-block" id="createArticle" type="submit" value="Create">
+
+            <button class="btn btn-lg btn-info btn-block" id='articleCancle' type="button" value="Cancel"><a href="./home.html" > Cancel </a></button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+
+        </form>
+    </div>
+    </div>
+
+  <script src="js/vendor/aws-cognito-sdk.min.js"></script>
+  <script src="js/vendor/amazon-cognito-identity.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/cognito-auth.js"></script>
+  <script src="js/createArticle.js"></script>
+
+
+
+
+</body>
+</html>

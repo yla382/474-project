@@ -18,10 +18,10 @@ var WildRydes = window.WildRydes || {};
         window.location.href = './signin.html';
     });
 
-    function requestCategory() {
+    function requestProfile() {
         $.ajax({
             method: 'GET',
-            url: _config.api.invokeUrl + '/category',
+            url: _config.api.invokeUrl + '/profile',
             headers: {
                 Authorization: authToken
             },
@@ -45,23 +45,23 @@ var WildRydes = window.WildRydes || {};
 
         console.log('Response received from API: ', result);
 
-        var categories = [];
-        categories = result.categories;
-        categories.forEach(addCard);
-        console.log('Response received from API: ', categories);
+        var profiles = [];
+        profiles = result.profiles;
+        profiles.forEach(addCard);
+        console.log('Response received from API: ', profiles);
 
     }
 
     // Register click handler for #request button
     $(function onDocReady() {
         // $('#request2').click(handleRequestClick);
-        // $('#cardTest').click(handleCards);
+        // $('#profileTest').click(handleCards);
 
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
                 $('.authToken').text(token);
-                requestCategory();
+                requestProfile();
             }
         });
 /*
@@ -74,7 +74,7 @@ var WildRydes = window.WildRydes || {};
     function handleRequestClick(event) {
 
         event.preventDefault();
-        requestCategory();
+        requestProfile();
         alert("Category js click");
 
     }
@@ -82,7 +82,7 @@ var WildRydes = window.WildRydes || {};
     function handleCards(event) {
 
         event.preventDefault();
-        requestCategory();
+        requestProfile();
         alert("Adding Cards");
 
     }
@@ -90,16 +90,23 @@ var WildRydes = window.WildRydes || {};
     function addCard(item) {
 
         //event.preventDefault();
-        var inputTitle = item.Title;
-        var inputValue = item.CategoryId;
-        var cardTitle = "<h5 class='card-title' id='categoryTitle'>" + inputTitle + "</h5>";
-        var cardText = "<p class='card-text' id='categoryText'>" + inputValue + "</p>";
-        var cardBody = "<div class='card-body'>" + cardTitle + cardText + "</div>";
-        var cardButton = "<button class='btn btn-sm btn-outline-info btn-block' type='submit' value='" + inputValue + "'> View </button>";
-        var cardFooter = "<div class='card-footer'>" + cardButton + "</div>";
-        var cardWrap = "<div class='card'>" + cardBody + cardFooter + "</div>";
+        var inputProfileKey = item.ProfileKey;
+        var inputName = item.Details.Name;
+        var inputContactInfo = item.Details.Email;
+        var inputPic = item.Details.ProfilePic;
+        var inputDescription = item.Details.Description;
 
-        $('#category-deck').append(cardWrap);
+        inputPic = "images/wr-investors-2.png";
+
+        var cardImage = "<img src='" + inputPic + "' class='card-img-top' alt='...'>";
+        var cardTitle = "<h5 class='card-title' id='profileName'>" + inputName + "</h5>";
+        var cardText = "<p class='card-text' id='profileText'>" + inputDescription + "</br> Contact: " + inputContactInfo + "</p>";
+        var cardBody = "<div class='card-body'>" + cardTitle + cardText + "</div>";
+        var cardButton = "<button class='btn btn-sm btn-outline-info btn-block' type='submit' value='" + inputProfileKey + "'> View </button>";
+        var cardFooter = "<div class='card-footer'>" + cardButton + "</div>";
+        var cardWrap = "<div class='card'>" + cardImage + cardBody + cardFooter + "</div>";
+
+        $('#profile-deck').append(cardWrap);
 
     }
 

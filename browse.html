@@ -6,9 +6,9 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
-  <title> Learn Portal Home </title>
+  <title> Learn Portal Browse </title>
 
-  <!-- Code modified from Bootstrap Carousel example for 474 Project. Modified by SM --> 
+  <!-- Code modified from Bootstrap Carousel example for 474 Project. Modified by SM -->
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -29,7 +29,7 @@
   <link href="css/main.css" rel="stylesheet">
 
 
-  
+
 
 </head>
 
@@ -81,66 +81,58 @@
 
     <div class="container marketing">
 
-      <!-- START THE FEATURETTES -->
+      
+      <div class="row" id='category-row'>
 
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading"> Featured Today! <span class="text-muted">Ease your mind.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          <!-- <ol id="updates">
-            <li> Welcome! This is first item </li>
-          </ol> -->
-        </div>
-        <div class="col-md-5">
-          <img src="images/article-pg.PNG"width="500" height="400" style="text-align:center; border: 1px solid #d8d8d8"> 
-          
-        </div>
-        <!-- <div id="authTokenModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="authToken">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Your Auth Token</h4>
-              </div>
-              <div class="modal-body">
-                <textarea class="authToken"></textarea>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <button class="btn btn-lg btn-primary btn-block" id="request" type="submit" value="Test"> Test </button>
-        <button class="btn btn-lg btn-primary btn-block" id="request2" type="submit" value="Test"> Test </button> -->
-      </div>
+        <div id="deck-header"><h1> Categories </h1></div>
 
-      <hr class="featurette-divider">
 
-      <!-- /END THE FEATURETTES -->
 
-      <div class="row">
+        <div class="browse-deck" id="category-deck">
 
-        <div id="deck-header"><h1> Recently Updated Articles </h1></div>
-
-        <div class="card-deck" id='article-deck'>
-
-          <!-- <div class="card">
-            
+          <!-- 
+          <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title"> Category Title </h5>
+              <p class="card-text"> Category Text </p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">Last updated 3 mins ago</small>
+              <button class="btn btn-sm btn-outline-info btn-block" type="submit" value="Category View" id='cardTest'> View </button>
             </div>
-          </div> -->
+          </div> 
+          --> 
 
         </div>
 
 
       </div><!-- /.row -->
 
+      <hr class="featurette-divider">
+
+      <div class="row">
+
+        <div id="deck-header"><h1> Profiles </h1></div>
+
+        <div class="browse-deck" id="profile-deck">
+
+          <!--
+          <div class="card">
+            <img src="images/wr-investors-1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"> Profile Name </h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-lg btn-outline-info btn-block" type="submit" value="Profile View" id='profileTest'> View </button>
+            </div>
+          </div>
+        -->
+
+
+        </div>
+
+
+      </div><!-- /.row -->
 
       <hr class="featurette-divider">
 
@@ -155,7 +147,7 @@
   </main>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- 
+  <!--
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
 
@@ -166,9 +158,9 @@
 
 
   <script src="js/nav.js"></script>
-  <script>includeHTML();</script>  
-  <script src="js/home.js"></script>
-  <script src="js/article.js"></script>
+  <script>includeHTML();</script>
+  <script src="js/category.js"></script>
+  <script src="js/profile.js"></script>
 
 </body>
 </html>
