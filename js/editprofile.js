@@ -13,7 +13,7 @@ var WildRydes = window.WildRydes || {};
         window.location.href = './signin.html';
     });
 
-    function editProfile(name, email, experience, description) {
+    function editProfile(name, email, experience, description, phonenumber, discord) {
         $.ajax({
             method: 'POST',
             url: _config.api.invokeUrl + '/editprofile',
@@ -22,10 +22,12 @@ var WildRydes = window.WildRydes || {};
             },
             data: JSON.stringify({
                 Profile: {
-                    Name: name,
-                    Email: email,
-                    Experience: experience,
-                    Description: description
+                    Name       : name,
+                    Email      : email,
+                    Experience : experience,
+                    Description: description,
+                    Phonenumber: phonenumber,
+                    Discord    : discord
                 }
             }),
             contentType: 'application/json',
@@ -57,11 +59,12 @@ var WildRydes = window.WildRydes || {};
 
     function handleRequestClick(event) {
     	 event.preventDefault();
-    	 let get_name = $('#form_name').val();
-    	 let get_email = $('#form_email').val();
-    	 let get_exp = $('form_exp').val();
-    	 let get_desc = $('#form_desc').val();
-    	 editProfile(get_name, get_email, get_exp, get_desc);
-
+    	 let get_name     = $('#form_name').val();
+    	 let get_email    = $('#form_email').val();
+    	 let get_exp      = $('#form_exp').val();
+    	 let get_desc     = $('#form_desc').val();
+         let get_phonenum = $('#form_phonenum').val();
+         let get_discord  = $('#form_discord').val();
+    	 editProfile(get_name, get_email, get_exp, get_desc, get_phonenum, get_discord);
     }
 }(jQuery));
