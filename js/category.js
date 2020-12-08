@@ -5,7 +5,7 @@
 var WildRydes = window.WildRydes || {};
 
 
-(function rideScopeWrapper($) {
+(function scopeWrapper($) {
     var authToken;
     WildRydes.authToken.then(function setAuthToken(token) {
         if (token) {
@@ -28,10 +28,9 @@ var WildRydes = window.WildRydes || {};
 /*            data: JSON.stringify({
                 Category: {
                     Id: '0',
-                    Title: 'This is a title'
+                    Title: 'Category Title'
                 }
             }),*/
-            //dataType: 'json',
             contentType: 'json',
             success: completeRequest,
             error: function ajaxError(jqXHR, textStatus, errorThrown) {
@@ -43,30 +42,32 @@ var WildRydes = window.WildRydes || {};
     }
 
     function completeRequest(result) {
-/*        var unicorn;
-        var pronoun;*/
-        console.log('Response received from API: ', result);
-/*        unicorn = result.Unicorn;
-        pronoun = unicorn.Gender === 'Male' ? 'his' : 'her';
-        displayUpdate(unicorn.Name + ', your ' + unicorn.Color + ' unicorn, is on ' + pronoun + ' way.');*/
-        displayUpdate(result);
-/*        animateArrival(function animateCallback() {
-            displayUpdate(unicorn.Name + ' has arrived. Giddy up!');
-            WildRydes.map.unsetLocation();
-            $('#request').prop('disabled', 'disabled');
-            $('#request').text('Set Pickup');
-        });*/
+
+        //console.log('Response received from API: ', result);
+
+        var categories = [];
+        categories = result.categories;
+
+        categories.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return a.Title.localeCompare(b.Title);
+        });
+        categories.forEach(addCard);
+        //console.log('Response received from API: ', categories);
+
     }
 
     // Register click handler for #request button
     $(function onDocReady() {
-        $('#request2').click(handleRequestClick);
+        // $('#request2').click(handleRequestClick);
+        $('#category-deck').on('click', 'button[name="categoryBtn"]', handleRequestClick);
 
 
         WildRydes.authToken.then(function updateAuthMessage(token) {
             if (token) {
-                displayUpdate('You are authenticated. Click to see your <a href="#authTokenModal" data-toggle="modal">auth token</a>.');
                 $('.authToken').text(token);
+                requestCategory();
             }
         });
 /*
@@ -75,32 +76,37 @@ var WildRydes = window.WildRydes || {};
         }*/
     });
 
-/*    function handlePickupChanged() {
-        var requestButton = $('#request');
-        requestButton.text('Request Unicorn');
-        requestButton.prop('disabled', false);
-    }*/
 
     function handleRequestClick(event) {
 
-        //var dummyText = 'Dummy Test';
+        event.preventDefault();
+        
+        alert("Feature coming soon...");
+
+    }
+
+    function handleCards(event) {
+
         event.preventDefault();
         requestCategory();
-        alert("Category js click");
+        alert("Adding Cards");
 
     }
 
+    function addCard(item) {
 
-    function displayUpdate(text) {
-        $('#updates').append($('<li>' + text + '</li>'));
-    }
+        //event.preventDefault();
+        var inputTitle = item.Title;
+        var inputValue = item.CategoryId;
+        var cardTitle = "<h5 class='card-title' id='categoryTitle'>" + inputTitle + "</h5>";
+        var cardText = "<p class='card-text' id='categoryText'>" + inputValue + "</p>";
+        var cardBody = "<div class='card-body'>" + cardTitle + "</div>";
+        var cardButton = "<button class='btn btn-sm btn-outline-info btn-block' name='categoryBtn' type='submit' value='" + inputValue + "'> View </button>";
+        var cardFooter = "<div class='card-footer'>" + cardButton + "</div>";
+        var cardWrap = "<div class='card'>" + cardBody + cardFooter + "</div>";
 
-    function handleLogin() {
-/*        $('#signIn').hide();
-        $('#signOut').show();*/
-        //alert("User Logged In " + $("#signin").text());
-        $('#signOut').append($('<a class="nav-link" href="./signout.html"> Sign Out </a>'));
-        $('#signIn').remove();
+        $('#category-deck').append(cardWrap);
+
     }
 
 

@@ -10,21 +10,22 @@ const AWS = require('aws-sdk');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
-// const allArticleParam = {
-//     TableName: 'Articles',
-//     ProjectionExpression: "ArticleId, Category, Title, Content, UserProfile, Author",
-//     ReturnConsumedCapacity: "TOTAL"
-// };
+const profileParam = {
+    TableName: 'Profile',
+    ProjectionExpression: "ProfileKey, Details",
+    ReturnConsumedCapacity: "TOTAL"
+};
 
-var article;
-//var articles = [];
-//var articleCount; 
+var profiles = [];
+var profileCount; 
 
 exports.handler = (event, context, callback) => {
+
     if (!event.requestContext.authorizer) {
-      errorResponse('Authorization not configured', context.awsRequestId, callback);
-      return;
+        errorResponse('Authorization not configured', context.awsRequestId, callback);
+        return;
     }
+
 
     const requestId = toUrlString(randomBytes(16));
     console.log('Received event (', requestId, '): ', event);
@@ -38,36 +39,33 @@ exports.handler = (event, context, callback) => {
     // In order to extract meaningful values, we need to first parse this string
     // into an object. A more robust implementation might inspect the Content-Type
     // header first and use a different parsing strategy based on that value.
-    const requestBody = JSON.parse(event.body);
+    //var requestBody = JSON.parse(event.body);
 
-    const requestArticleId = requestBody.Article.Id;
+    //var category = requestBody.Category;
+    //const unicorn = findUnicorn(article);
 
-    //article = findArticle(requestArticleId);
-
-    var articleParam = {
-        TableName: 'Articles',
-        Key: {'ArticleId': requestArticleId},
-        ProjectionExpression: "ArticleId, Author, Category, Title, Content, UserProfile",
-        ReturnConsumedCapacity: "TOTAL"
-    };
-
-    getArticle(articleParam).then(() => {
+    getProfile().then(() => {
         // You can use the callback function to provide a return value from your Node.js
         // Lambda functions. The first parameter is used for failed invocations. The
         // second parameter specifies the result data of the invocation.
-
+        
+        //requestBody = getCategory();
+        //requestBody = categories;
+        
         // Because this Lambda function is called by an API Gateway proxy integration
         // the result object must use the following structure.
         callback(null, {
             statusCode: 201,
             body: JSON.stringify({
-                //articleCount,
-                //articles,
-                article
+                profileCount,
+                profiles
+
             }),
             headers: {
-                'Access-Control-Allow-Origin': '*',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET"
             },
+
         });
     }).catch((err) => {
         console.error(err);
@@ -83,46 +81,32 @@ exports.handler = (event, context, callback) => {
 // This is where you would implement logic to find the optimal unicorn for
 // this ride (possibly invoking another Lambda function as a microservice.)
 // For simplicity, we'll just pick a unicorn at random.
-// function findArticle(id) {
-//     console.log('Finding article');
+/*function findUnicorn(article) {
+    console.log('Finding unicorn for ', article.Heading, ', ', article.Topic);
+    return fleet[Math.floor(Math.random() * fleet.length)];
+}*/
 
-//     return articles.find(element => element.ArticleId == id);
-// }
-
-function getArticle(articleParam) {
-    return ddb.get(articleParam, function(err, data){
+function getProfile() {
+    return ddb.scan(profileParam, function(err, data){
         if (err){
             console.log("Error", err);
         }
         else{
             console.log("Success", data);
-            article = data.Item;
-            console.log("Test", article);
+            profileCount = data.Count;
+            profiles = data.Items;
+            console.log("Test", profiles);
 
         }
     }).promise();
 }
 
-// function getAllArticle() {
-//     return ddb.scan(allArticleParam, function(err, data){
-//         if (err){
-//             console.log("Error", err);
-//         }
-//         else{
-//             console.log("Success", data);
-//             articleCount = data.Count;
-//             articles = data.Items;
-//             console.log("Test", articles);
-
-//         }
-//     }).promise();
-// }
 
 function toUrlString(buffer) {
     return buffer.toString('base64')
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=/g, '');
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
 }
 
 function errorResponse(errorMessage, awsRequestId, callback) {
@@ -131,9 +115,9 @@ function errorResponse(errorMessage, awsRequestId, callback) {
     body: JSON.stringify({
       Error: errorMessage,
       Reference: awsRequestId,
-    }),
+  }),
     headers: {
-      'Access-Control-Allow-Origin': '*'
-    },
-  });
+      'Access-Control-Allow-Origin': '*',
+  },
+});
 }

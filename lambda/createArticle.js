@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT-0
 
 
-// Code modified from AWS WildRydes example for 474 Project. Modified by SM
+// Code modified from AWS WildRydes example for 474 Project. Modified by OR, SM
 
 const randomBytes = require('crypto').randomBytes;
 
@@ -10,15 +10,6 @@ const AWS = require('aws-sdk');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
-// const allArticleParam = {
-//     TableName: 'Articles',
-//     ProjectionExpression: "ArticleId, Category, Title, Content, UserProfile, Author",
-//     ReturnConsumedCapacity: "TOTAL"
-// };
-
-var article;
-//var articles = [];
-//var articleCount; 
 
 exports.handler = (event, context, callback) => {
     if (!event.requestContext.authorizer) {
@@ -26,8 +17,8 @@ exports.handler = (event, context, callback) => {
       return;
     }
 
-    const requestId = toUrlString(randomBytes(16));
-    console.log('Received event (', requestId, '): ', event);
+    const articleId = toUrlString(randomBytes(16));
+    console.log('Received event (', articleId, '): ', event);
 
     // Because we're using a Cognito User Pools authorizer, all of the claims
     // included in the authentication token are provided in the request context.
@@ -40,18 +31,10 @@ exports.handler = (event, context, callback) => {
     // header first and use a different parsing strategy based on that value.
     const requestBody = JSON.parse(event.body);
 
-    const requestArticleId = requestBody.Article.Id;
+    const article = requestBody.Article;
 
-    //article = findArticle(requestArticleId);
 
-    var articleParam = {
-        TableName: 'Articles',
-        Key: {'ArticleId': requestArticleId},
-        ProjectionExpression: "ArticleId, Author, Category, Title, Content, UserProfile",
-        ReturnConsumedCapacity: "TOTAL"
-    };
-
-    getArticle(articleParam).then(() => {
+    recordArticle(articleId, username, article).then(() => {
         // You can use the callback function to provide a return value from your Node.js
         // Lambda functions. The first parameter is used for failed invocations. The
         // second parameter specifies the result data of the invocation.
@@ -61,9 +44,8 @@ exports.handler = (event, context, callback) => {
         callback(null, {
             statusCode: 201,
             body: JSON.stringify({
-                //articleCount,
-                //articles,
-                article
+                ArticleId: articleId,
+                Status: 'sucess'
             }),
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -80,43 +62,19 @@ exports.handler = (event, context, callback) => {
     });
 };
 
-// This is where you would implement logic to find the optimal unicorn for
-// this ride (possibly invoking another Lambda function as a microservice.)
-// For simplicity, we'll just pick a unicorn at random.
-// function findArticle(id) {
-//     console.log('Finding article');
 
-//     return articles.find(element => element.ArticleId == id);
-// }
-
-function getArticle(articleParam) {
-    return ddb.get(articleParam, function(err, data){
-        if (err){
-            console.log("Error", err);
-        }
-        else{
-            console.log("Success", data);
-            article = data.Item;
-            console.log("Test", article);
-
-        }
+function recordArticle(articleId, username, article) {
+    return ddb.put({
+        TableName: 'Articles',
+        Item: {
+            ArticleId: articleId,
+            Author: username,
+            Title: article.Title,
+            Content: article.Content,
+            CreatedTime: new Date().toISOString(),
+        },
     }).promise();
 }
-
-// function getAllArticle() {
-//     return ddb.scan(allArticleParam, function(err, data){
-//         if (err){
-//             console.log("Error", err);
-//         }
-//         else{
-//             console.log("Success", data);
-//             articleCount = data.Count;
-//             articles = data.Items;
-//             console.log("Test", articles);
-
-//         }
-//     }).promise();
-// }
 
 function toUrlString(buffer) {
     return buffer.toString('base64')
@@ -133,7 +91,7 @@ function errorResponse(errorMessage, awsRequestId, callback) {
       Reference: awsRequestId,
     }),
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
     },
   });
 }

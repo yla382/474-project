@@ -10,31 +10,25 @@ const AWS = require('aws-sdk');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
-var params = {
-    TableName: 'Category',
-    Key: {
-        'CategoryId': 1
-    },
-    ProjectionExpression: "CategoryId, Title",
-    ReturnConsumedCapacity: "TOTAL"
-};
-
-const paramsCategory = {
+const categoryParam = {
     TableName: 'Category',
     ProjectionExpression: "CategoryId, Title",
     ReturnConsumedCapacity: "TOTAL"
 };
 
+var categories = [];
+var categoryCount; 
 
 exports.handler = (event, context, callback) => {
+
     if (!event.requestContext.authorizer) {
-      errorResponse('Authorization not configured', context.awsRequestId, callback);
-      return;
-  }
+        errorResponse('Authorization not configured', context.awsRequestId, callback);
+        return;
+    }
 
 
-  const requestId = toUrlString(randomBytes(16));
-  console.log('Received event (', requestId, '): ', event);
+    const requestId = toUrlString(randomBytes(16));
+    console.log('Received event (', requestId, '): ', event);
 
     // Because we're using a Cognito User Pools authorizer, all of the claims
     // included in the authentication token are provided in the request context.
@@ -45,25 +39,12 @@ exports.handler = (event, context, callback) => {
     // In order to extract meaningful values, we need to first parse this string
     // into an object. A more robust implementation might inspect the Content-Type
     // header first and use a different parsing strategy based on that value.
-    var requestBody = JSON.parse(event.body);
+    //var requestBody = JSON.parse(event.body);
 
     //var category = requestBody.Category;
-/*    var categories = {
-        Items:
-        {
-            "Id": {
-                "S": "Amazon DynamoDB#How do I update multiple items?"
-            },
-            "Title": {
-                "S": "Have you looked at BatchWriteItem?"
-            }
-        }        
-
-    };*/
-
     //const unicorn = findUnicorn(article);
 
-    getCategory(requestBody).then(() => {
+    getCategory().then(() => {
         // You can use the callback function to provide a return value from your Node.js
         // Lambda functions. The first parameter is used for failed invocations. The
         // second parameter specifies the result data of the invocation.
@@ -76,7 +57,8 @@ exports.handler = (event, context, callback) => {
         callback(null, {
             statusCode: 201,
             body: JSON.stringify({
-                requestBody
+                categoryCount,
+                categories
 
             }),
             headers: {
@@ -104,15 +86,17 @@ exports.handler = (event, context, callback) => {
     return fleet[Math.floor(Math.random() * fleet.length)];
 }*/
 
-function getCategory(requestBody) {
-    return ddb.get(params, function(err, data){
+function getCategory() {
+    return ddb.scan(categoryParam, function(err, data){
         if (err){
             console.log("Error", err);
         }
         else{
-            console.log("Success", data.Item);
-            //requestBody.Id = data.Item.CategoryId;
-            requestBody = data.Item;
+            console.log("Success", data);
+            categoryCount = data.Count;
+            categories = data.Items;
+            console.log("Test", categories);
+
         }
     }).promise();
 }
@@ -146,6 +130,7 @@ function getCategory(requestBody) {
         },
     }).promise();
 }*/
+
 
 function toUrlString(buffer) {
     return buffer.toString('base64')

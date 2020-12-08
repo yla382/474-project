@@ -10,15 +10,14 @@ const AWS = require('aws-sdk');
 
 const ddb = new AWS.DynamoDB.DocumentClient();
 
-// const allArticleParam = {
-//     TableName: 'Articles',
-//     ProjectionExpression: "ArticleId, Category, Title, Content, UserProfile, Author",
-//     ReturnConsumedCapacity: "TOTAL"
-// };
+const articleParam = {
+    TableName: 'Articles',
+    //ProjectionExpression: "ArticleId, Category, Title, Content, UserProfile, Author, CreatedTime",
+    ReturnConsumedCapacity: "TOTAL"
+};
 
-var article;
-//var articles = [];
-//var articleCount; 
+var articles = [];
+var articleCount; 
 
 exports.handler = (event, context, callback) => {
     if (!event.requestContext.authorizer) {
@@ -38,20 +37,13 @@ exports.handler = (event, context, callback) => {
     // In order to extract meaningful values, we need to first parse this string
     // into an object. A more robust implementation might inspect the Content-Type
     // header first and use a different parsing strategy based on that value.
-    const requestBody = JSON.parse(event.body);
+    //const requestBody = JSON.parse(event.body);
 
-    const requestArticleId = requestBody.Article.Id;
+    //const article = requestBody.Article;
 
-    //article = findArticle(requestArticleId);
+    //const unicorn = findUnicorn(article);
 
-    var articleParam = {
-        TableName: 'Articles',
-        Key: {'ArticleId': requestArticleId},
-        ProjectionExpression: "ArticleId, Author, Category, Title, Content, UserProfile",
-        ReturnConsumedCapacity: "TOTAL"
-    };
-
-    getArticle(articleParam).then(() => {
+    getArticle().then(() => {
         // You can use the callback function to provide a return value from your Node.js
         // Lambda functions. The first parameter is used for failed invocations. The
         // second parameter specifies the result data of the invocation.
@@ -61,9 +53,8 @@ exports.handler = (event, context, callback) => {
         callback(null, {
             statusCode: 201,
             body: JSON.stringify({
-                //articleCount,
-                //articles,
-                article
+                articleCount,
+                articles
             }),
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -83,40 +74,25 @@ exports.handler = (event, context, callback) => {
 // This is where you would implement logic to find the optimal unicorn for
 // this ride (possibly invoking another Lambda function as a microservice.)
 // For simplicity, we'll just pick a unicorn at random.
-// function findArticle(id) {
-//     console.log('Finding article');
-
-//     return articles.find(element => element.ArticleId == id);
+// function findUnicorn(article) {
+//     console.log('Finding unicorn for ', article.Heading, ', ', article.Topic);
+//     return fleet[Math.floor(Math.random() * fleet.length)];
 // }
 
-function getArticle(articleParam) {
-    return ddb.get(articleParam, function(err, data){
+function getArticle() {
+    return ddb.scan(articleParam, function(err, data){
         if (err){
             console.log("Error", err);
         }
         else{
             console.log("Success", data);
-            article = data.Item;
-            console.log("Test", article);
+            articleCount = data.Count;
+            articles = data.Items;
+            console.log("Test", articles);
 
         }
     }).promise();
 }
-
-// function getAllArticle() {
-//     return ddb.scan(allArticleParam, function(err, data){
-//         if (err){
-//             console.log("Error", err);
-//         }
-//         else{
-//             console.log("Success", data);
-//             articleCount = data.Count;
-//             articles = data.Items;
-//             console.log("Test", articles);
-
-//         }
-//     }).promise();
-// }
 
 function toUrlString(buffer) {
     return buffer.toString('base64')
@@ -133,7 +109,7 @@ function errorResponse(errorMessage, awsRequestId, callback) {
       Reference: awsRequestId,
     }),
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
     },
   });
 }
